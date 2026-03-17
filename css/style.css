@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+/* 歸零 */
+html,body,header,footer,main,article,aside,nav,menu,h1,h2,h3,h4,h5,p,a,ul,ol,li,div,span,img,form,input,button,table,tr,td,th{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    color: inherit;
+    font-family: "Noto Sans TC", serif;
+}
+img{
+    /* width: 100%; */
+    vertical-align: bottom;
+}
+
+html,body{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url(../images/bg2.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+:root{
+    --mainColor: #1A2E34;
+    --mainAlpah80: #1A2D33CC;
+    --logoColor:#DFA22F ;
+    --textColorR: #751B13;
+    --textAlpha75: hsla(39, 73%, 53%, 0.75);
+    --boxColor: #19708FBF;
+    --white: #FFF9F1;
+    --textColorW: #D4BFA2;
+    --transition: all 800ms ease;
+    --shadow: 1px 1px 8px #1A2E34;
+}
+
+/* Header */
+header{
+    width: 100%;
+    height: 128px;
+    line-height: 64px;
+    text-align: center;
+    padding: 60px 1em 0;
+    font-size: 24px;
+    letter-spacing: 6px;
+    position: relative;
+    z-index: 30;
+}
+header img{
+    width: auto;
+    height: 50px;
+    vertical-align: middle;
+}
+header span{
+    color: var(--logoColor);
+    vertical-align: middle;
+    font-weight: 700;
+    text-shadow: var(--shadow);
+}
+main{
+    width: 100%;
+    height: calc(100vh - 224px); /* 頁尾96+頁首128=224 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .box{
+    width: 50%;
+    max-width: 300px; /* 也可這樣控制手機板時的最小可縮尺寸 */
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+main .box .bar{
+    width: 100%;
+    height: 3em;
+    position: absolute;
+    top: calc(50% - 1.5em); /* 用height跟top置中(height的一半-1.5em) */
+    left: 0;
+}
+main .box .bar > div{
+    font-size: 55px;
+    color: var(--textAlpha75);
+    position: absolute;
+    cursor: pointer;
+    transition: var(--transition);
+}
+main .box .bar > div:hover{
+    color: var(--white);
+}
+main .box .bar #prev{
+    left: 10px;
+}
+main .box .bar #next{
+    right: 10px;
+}
+main .box .slide{
+    width: calc(100% * 3);
+    display: flex;
+    flex-wrap: nowrap;
+    transition: var(--transition);
+}
+main .box .slide .item {
+    width: calc(100% / 3);
+    position: relative;
+}
+main .box .slide .item h2{
+    width: 100%;
+    height: 2em;
+    line-height: 2em;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    text-align: center;
+    color: var(--white);
+    text-shadow: var(--shadow);
+    font-size: 15px;
+}
+main .box .slide .item .card{
+    position: relative;
+    transition: var(--transition);
+    transform: perspective(800px);
+}
+main .box .slide .item .card img{
+    width: 100%;
+    opacity: 0;
+}
+main .box .slide .item .card > div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+}
+main .box .slide .item .card .front{
+    background-image: url(../images/TheFool.png);
+}
+main .box .slide .item .card .back{
+    background-image: url(../images/card_bg.png);
+}
+main .box .slide .item .card.rotate{
+    transition: var(--transition);
+    transform: rotateY(180deg);
+}
+main .box .slide .item .card .front.rotate{
+    transition: var(--transition);
+    transform: rotateY(-180deg);
+}
+main .box .slide .item .card .front.reverse{
+    transform: rotateZ(180deg)!important;
+}
+main .box .slide .item .card .back.rotate{
+    transition: var(--transition);
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+aside{
+    width: 90%;
+    height: 90vh;
+    background-color: var(--mainAlpah80);
+    backdrop-filter: blur(5px);
+    color: var(--white);
+    padding: 1.5em;
+    position: fixed;
+    top: calc(50vh - 45vh);
+    left: -100%; /* 對位置時可先將它隱藏出邊界 left: -100%; */
+    transition: var(--transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 40;
+    overflow-y: scroll;
+    font-size: 15px;
+    border-radius: 20px;
+}
+aside .box h2{
+    color: var(--logoColor);
+    padding: 0 0 1em;
+}
+aside.info{
+    left: calc(50% - 45%)!important;
+}
+aside .close{
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    cursor: pointer;
+    color: var(--textColorW);
+}
+#start{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url(../images/bg1.jpg);
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 64px; /*原128px*/
+    justify-content: center;
+    align-content: space-evenly;
+}
+#start h1{
+    color: var(--mainColor);
+    text-align: center;
+    padding: 0.5em;
+}
+#start article{
+    width: 100%;
+    height: calc(100vh - 410px);
+    margin-top: -70px;
+    position: relative;
+}
+#start h4{
+    width: 100%;
+    text-align: center;
+    color: var(--mainColor);
+    margin-top: -60px;
+    text-shadow: 1px 1px 1px 7px var(--white);
+}
+#start article img{
+    width: 25%;
+    position: absolute;
+    top: 80px; /*圖片位置(以article對位)*/
+    left: calc(50% - 12.5%); /*扣掉width一半使其置中*/
+}
+#start article:hover img{
+    animation: run 3s ease forwards; /*forwards回到最後位置*/
+}
+#start article:hover img:nth-of-type(1){
+    transform: translate(0px,0px); /*translate(水平,垂直)*/
+    animation-delay: 0s;
+}
+#start article:hover img:nth-of-type(2){
+    transform: translate(0px,0px);
+    animation-delay: 0.2s;
+}
+#start article:hover img:nth-of-type(3){
+    transform: translate(5px,5px);
+    animation-delay: 0.4s;
+}
+#start article:hover img:nth-of-type(4){
+    transform: translate(10px,10px);
+    animation-delay: 0.6s;
+}
+#start article:hover img:nth-of-type(5){
+    transform: translate(15px,15px);
+    animation-delay: 0.8s;
+}
+#start article:hover img:nth-of-type(6){
+    transform: translate(20px,20px);
+    animation-delay: 1s;
+}
+
+@keyframes run{
+    0%{
+        transform: rotate(0deg);
+    }
+    15%{
+        transform: translate(30%,30%) rotate(0deg);
+    }
+    30%{
+        transform: translate(-20%,40%) rotate(30deg);
+    }
+    45%{
+        transform: translate(50%,10%) rotate(-45deg);
+    }
+    60%{
+        transform: translate(-40%,-50%) rotate(70deg);
+    }
+    75%{
+        transform: translate(20%,30%) rotate(-60deg);
+    }
+    90%{
+        transform: translate(-10%,10%) rotate(90deg);
+    }
+    100%{
+        transform: translate(0,0) rotate(0);
+    }
+}
+footer{
+    width: 100%;
+    height: 96px; /* 大約6個字元*16=高96 */
+    text-align: center;
+    padding: 2em 1em 0;
+    color: var(--white);
+    font-size: 12px;
+}
+
+@media only screen and (min-width: 410px){
+    aside{
+        overflow-y: hidden;
+    }
+}
+@media only screen and (min-width: 768px){
+    aside{
+        font-size: 20px;
+    }
+    #start h4{
+        font-size: 20px;
+        margin-top: -75px;
+    }
+}
+@media only screen and (min-width: 1024px){
+    main .box{
+        width: 100%;
+        max-width: 750px;
+        overflow: visible; /* 讓牌展開 */
+        justify-content: space-evenly;
+    }
+    main .box .slide{
+        width: 100%;
+    }
+    main .box .slide .item{
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+    main .box .bar{
+        display: none;
+    }
+    aside .box{
+        padding: 2em;
+    }
+    #start article img{
+        width: 100px;
+        left: calc(50% - 50px);
+        top: 10px; 
+    }
+}
+@media only screen and (min-width: 1440px){
+    main .box{
+        width: 100%;
+        max-width: 950px;
+    }
+    #start article img{
+        width: 250px;
+        left: calc(50% - 125px);
+    }
+}
